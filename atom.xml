@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[My Octopress Blog]]></title>
+  <title><![CDATA[FocusIt - Make IT happends]]></title>
   <link href="http://d0k1.github.io/focusit/atom.xml" rel="self"/>
   <link href="http://d0k1.github.io/focusit/"/>
-  <updated>2016-12-03T01:58:44+05:00</updated>
+  <updated>2016-12-03T02:04:16+05:00</updated>
   <id>http://d0k1.github.io/focusit/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Denis Kirpichenkov]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
