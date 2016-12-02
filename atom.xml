@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[My Octopress Blog]]></title>
+  <link href="http://d0k1.github.io/focusit/atom.xml" rel="self"/>
+  <link href="http://d0k1.github.io/focusit/"/>
+  <updated>2016-12-03T01:53:18+05:00</updated>
+  <id>http://d0k1.github.io/focusit/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+</feed>

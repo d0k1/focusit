@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: 
+
+Sitemap: http://d0k1.github.io/focusit/sitemap.xml 
