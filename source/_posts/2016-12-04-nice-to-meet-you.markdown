@@ -19,6 +19,8 @@ They didn't fit my needs as well. I had to maintain them, and this process takes
 I found the best hosting I've ever dreamt - GitHub.
 Below I will tell how to make GitHub to host your blog for FREE.  
 
+<!-- more -->
+
 # Octopress basic
 
 Octopress is not a CMS in common sense. It is a bunch of ruby scripts that generates static html pages to host your posts. So, your blog will be blazing fast.
@@ -51,7 +53,7 @@ The quick solution is to use `/usr/bin/rake` instead of `rake`
 
 ## Taste it
 
-After you done Octopress installation you can test it. Just run `rake preview` and open browser at `localhost:4000` 
+After you've done Octopress installation, you can test it. Just run `rake preview` and open browser at `localhost:4000` 
 
 ## First post
 
@@ -75,13 +77,13 @@ Enter the read/write url for your repository
 ``
 
 You may answer something like this `git@github.com:USERNAME/REPOSITORY.git`
-Don't forget to change USERNAME to you github's login, and REPOSITORY to you real repository name
+Don't forget to change USERNAME to your github's login, and REPOSITORY to your repository name
 
 Next, add your remote repo to your local repo by running `git remote add origin git@github.com:USERNAME/REPOSITORY.git` 
 
-The next step is renaming master branch to source `git branch -m master source`
+The next step is renaming current branch from 'master' to 'source' with `git branch -m master source`
 
-Regenerate everything `rake generate`
+After that, generate everything with `rake generate`
 
 Add the whole directory with Octopress and your post to a git with `git add .`
 
@@ -142,7 +144,5 @@ And now I have to add to DNS
 
 So, that's how I get my blog on focus-it.ru up and running on free hosting with a great "CMS"
 
-
-Cheers, 
-
-Denis
+--
+_Cheers,_ 
