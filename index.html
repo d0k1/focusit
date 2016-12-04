@@ -92,13 +92,14 @@ git &hellip;">
 
   <div class="entry-content"><p>Octopress posting workflow:</p>
 
-<ul>
+<ol>
 <li><code>rake new_post["Post title"]</code>. Note, if you are <em>zsh</em> user don&rsquo;t forget to escape <code>[</code> and <code>]</code></li>
 <li><code>rake generate</code></li>
 <li><code>git add .</code></li>
 <li><code>git commit -am 'Post title'</code></li>
 <li><code>git push origin source</code></li>
-</ul>
+<li><code>rake deploy</code></li>
+</ol>
 
 </div>
   
@@ -188,7 +189,36 @@ Below I will tell how to make GitHub to host your blog for FREE.</p>
   Copyright &copy; 2016 - Denis Kirpichenkov -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter7628593 = new Ya.Metrika({
+                    id:7628593,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true,
+                    trackHash:true
+                });
+            } catch(e) { }
+        });
 
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/7628593" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 </footer>
   
 

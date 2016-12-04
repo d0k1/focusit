@@ -4,7 +4,7 @@
   <title><![CDATA[FocusIt - Make IT happends]]></title>
   <link href="http://d0k1.github.io/focusit/atom.xml" rel="self"/>
   <link href="http://d0k1.github.io/focusit/"/>
-  <updated>2016-12-04T23:32:20+05:00</updated>
+  <updated>2016-12-05T00:08:23+05:00</updated>
   <id>http://d0k1.github.io/focusit/</id>
   <author>
     <name><![CDATA[Denis Kirpichenkov]]></name>
@@ -20,13 +20,14 @@
     <id>http://d0k1.github.io/focusit/blog/2016/12/04/octopress-cheat-sheet</id>
     <content type="html"><![CDATA[<p>Octopress posting workflow:</p>
 
-<ul>
+<ol>
 <li><code>rake new_post["Post title"]</code>. Note, if you are <em>zsh</em> user don&rsquo;t forget to escape <code>[</code> and <code>]</code></li>
 <li><code>rake generate</code></li>
 <li><code>git add .</code></li>
 <li><code>git commit -am 'Post title'</code></li>
 <li><code>git push origin source</code></li>
-</ul>
+<li><code>rake deploy</code></li>
+</ol>
 
 ]]></content>
   </entry>
