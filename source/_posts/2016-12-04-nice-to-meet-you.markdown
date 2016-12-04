@@ -7,7 +7,7 @@ categories: ["octopress", "about", "blog"]
 ---
 
 Hello, and Welcome.
-My name is Denis Kirpichenkovv, and I'm a Java developer who likes DevOps too ;)
+My name is Denis Kirpichenkov, and I'm a Java developer who likes DevOps too ;)
 In my first post will tell you how to get very powerful Content Management System, and how to get free hosting for it.
 
 I tried many times to start blogging, but again and again I failed. The one of reasons was CMS. I could find content system to fit all of my needs.
