@@ -4,7 +4,7 @@
   <title><![CDATA[Category: About | FocusIt - Make IT happends]]></title>
   <link href="http://d0k1.github.io/focusit/blog/categories/about/atom.xml" rel="self"/>
   <link href="http://d0k1.github.io/focusit/"/>
-  <updated>2016-12-04T18:09:13+05:00</updated>
+  <updated>2016-12-04T23:26:02+05:00</updated>
   <id>http://d0k1.github.io/focusit/</id>
   <author>
     <name><![CDATA[Denis Kirpichenkov]]></name>
@@ -30,6 +30,9 @@ I&rsquo;m will briefly describe its features in this post.</p>
 They didn&rsquo;t fit my needs as well. I had to maintain them, and this process takes time. It is a big problem for me.
 I found the best hosting I&rsquo;ve ever dreamt - GitHub.
 Below I will tell how to make GitHub to host your blog for FREE.</p>
+
+<!-- more -->
+
 
 <h1>Octopress basic</h1>
 
@@ -63,7 +66,7 @@ LoadError: cannot load such file -- /usr/share/rubygems-integration/all/specific
 
 <h2>Taste it</h2>
 
-<p>After you done Octopress installation you can test it. Just run <code>rake preview</code> and open browser at <code>localhost:4000</code></p>
+<p>After you&rsquo;ve done Octopress installation, you can test it. Just run <code>rake preview</code> and open browser at <code>localhost:4000</code></p>
 
 <h2>First post</h2>
 
@@ -87,13 +90,13 @@ Enter the read/write url for your repository
 </code></p>
 
 <p>You may answer something like this <code>git@github.com:USERNAME/REPOSITORY.git</code>
-Don&rsquo;t forget to change USERNAME to you github&rsquo;s login, and REPOSITORY to you real repository name</p>
+Don&rsquo;t forget to change USERNAME to your github&rsquo;s login, and REPOSITORY to your repository name</p>
 
 <p>Next, add your remote repo to your local repo by running <code>git remote add origin git@github.com:USERNAME/REPOSITORY.git</code></p>
 
-<p>The next step is renaming master branch to source <code>git branch -m master source</code></p>
+<p>The next step is renaming current branch from &lsquo;master&rsquo; to &lsquo;source&rsquo; with <code>git branch -m master source</code></p>
 
-<p>Regenerate everything <code>rake generate</code></p>
+<p>After that, generate everything with <code>rake generate</code></p>
 
 <p>Add the whole directory with Octopress and your post to a git with <code>git add .</code></p>
 
@@ -154,9 +157,8 @@ And now I have to add to DNS
 
 <p>So, that&rsquo;s how I get my blog on focus-it.ru up and running on free hosting with a great &ldquo;CMS&rdquo;</p>
 
-<p>Cheers,</p>
-
-<p>Denis</p>
+<p>&ndash;
+<em>Cheers,</em></p>
 ]]></content>
   </entry>
   
