@@ -9,7 +9,9 @@
   <meta name="author" content="Denis Kirpichenkov">
 
   
-  <meta name="description" content=" Blog Archives Recent Posts ">
+  <meta name="description" content="Hello, and Welcome.
+My name is Denis Kirpichenkovv, and I&rsquo;m a Java developer who likes DevOps too ;)
+In my first post will tell you how to get &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +68,187 @@
       <div class="blog-index">
   
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2016/12/04/nice-to-meet-you/">Nice to Meet You!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-12-04T16:44:15+05:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>4:44 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Hello, and Welcome.
+My name is Denis Kirpichenkovv, and I&rsquo;m a Java developer who likes DevOps too ;)
+In my first post will tell you how to get very powerful Content Management System, and how to get free hosting for it.</p>
+
+<p>I tried many times to start blogging, but again and again I failed. The one of reasons was CMS. I could find content system to fit all of my needs.
+But now, I hope I found The One. I&rsquo;m talking about Octopress. It is a powerful and simple Content Management System, which is for say is not a CMS at all.
+I&rsquo;m will briefly describe its features in this post.</p>
+
+<p>The next important step in blogging is a hosting. I tried Amazon&rsquo;s EC2 tiny instance, Digital Ocean&rsquo;s 5-dollars-per-month-vm.
+They didn&rsquo;t fit my needs as well. I had to maintain them, and this process takes time. It is a big problem for me.
+I found the best hosting I&rsquo;ve ever dreamt - GitHub.
+Below I will tell how to make GitHub to host your blog for FREE.</p>
+
+<h1>Octopress basic</h1>
+
+<p>Octopress is not a CMS in common sense. It is a bunch of ruby scripts that generates static html pages to host your posts. So, your blog will be blazing fast.
+You have some customization point such as themes, page templates. I promise I&rsquo;ll write about it after I&rsquo;ll try it on this blog.
+I read about Octopress somewhere, google it, and thought that it is woth trying.</p>
+
+<h2>Installation</h2>
+
+<p>First of all, you have to get it from github</p>
+
+<p><code>git clone git://github.com/imathis/octopress.git octopress</code></p>
+
+<p>Next, make initial preparations</p>
+
+<p><code>cd octopress &amp;&amp; bundle install</code></p>
+
+<p>After it you need to run</p>
+
+<p><code>rake install</code></p>
+
+<p><strong>Ubuntu 16.04</strong> I don&rsquo;t know why at the moment, but if you run <code>rake SOMETHING</code> you&rsquo;ll get wierd error, that tells nothing.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>bundler: failed to load command: rake (/usr/local/bin/rake)
+</span><span class='line'>LoadError: cannot load such file -- /usr/share/rubygems-integration/all/specifications/bin/rake
+</span><span class='line'>  /usr/local/bin/rake:23:in `load'
+</span><span class='line'>  /usr/local/bin/rake:23:in `&lt;top (required)&gt;'</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The quick solution is to use <code>/usr/bin/rake</code> instead of <code>rake</code></p>
+
+<h2>Taste it</h2>
+
+<p>After you done Octopress installation you can test it. Just run <code>rake preview</code> and open browser at <code>localhost:4000</code></p>
+
+<h2>First post</h2>
+
+<p>Making post is as easy as run <code>rake new_post["This is a fisrt post"]</code> It will create a markdown file in  <code>source/_posts</code></p>
+
+<p>You are free to write whatever you want in this post in markdown.
+To make it a bit easier here is <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">markdown cheat sheet</a></p>
+
+<h2>Generate pages</h2>
+
+<p>When you are ready to publish your blog you have to run <code>rake generate</code>. This command will produce everything you need to serve blog in <code>public</code> folder
+So, after generation you are free to upload public to whatever you want hosting, and have your blog online.</p>
+
+<h1>GitHub as a free hosting</h1>
+
+<p>After you&rsquo;ve cloned a Octopress repo from github you can use it as your own repo for blog. First you need to run <code>rake setup_github_pages</code>.
+This command will ask you about url to your github repository to work with</p>
+
+<p><code>
+Enter the read/write url for your repository
+</code></p>
+
+<p>You may answer something like this <code>git@github.com:USERNAME/REPOSITORY.git</code>
+Don&rsquo;t forget to change USERNAME to you github&rsquo;s login, and REPOSITORY to you real repository name</p>
+
+<p>Next, add your remote repo to your local repo by running <code>git remote add origin git@github.com:USERNAME/REPOSITORY.git</code></p>
+
+<p>The next step is renaming master branch to source <code>git branch -m master source</code></p>
+
+<p>Regenerate everything <code>rake generate</code></p>
+
+<p>Add the whole directory with Octopress and your post to a git with <code>git add .</code></p>
+
+<p>Make commit <code>git commit -am "First commit to github."</code></p>
+
+<p>Push it to github <code>git push origin source</code></p>
+
+<p>Deploy generated content to GitHub <code>rake deploy</code></p>
+
+<h2>Subdirectory problem</h2>
+
+<p>If you github repo is something like <code>d0k1/focusit</code> you&rsquo;ll face a problem - deployed blog would not find resources like static content (css, images).
+To solve this you need to run <code>rake set_root_dir[d0k1/focusit]</code>
+To revert changes run <code>rake set_root_dir[/]</code></p>
+
+<p>After you done it, update <code>_config.yml</code>
+<code>
+url: http://d0k1.github.io/focusit
+</code></p>
+
+<p>and <code>Rakefile</code>
+<code>
+document_root = "~/d0k1.github.io/focusit"
+</code></p>
+
+<h2>Custom Domain</h2>
+
+<p>You can add custom domain to you github pages based blog. To make it you need to create two file inside <code>source</code> catalog: <code>CNAME</code>, <code>.nojekyll</code>
+File <code>CNAME</code> should contain you custom domain, for example <code>focus-it.ru</code></p>
+
+<p>After it you can ypddate you repository</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake generate
+</span><span class='line'>git add .
+</span><span class='line'>git add -am 'domain configuration'
+</span><span class='line'>git push origin source
+</span><span class='line'>rake deploy</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Do not forget to update your DNS to forward requests from you custom domain to github&rsquo;s servers.
+You need know what ip servers you repostiry</p>
+
+<p>After I ran
+<code>dig d0k1.github.io +nostats +nocomments +nocmd</code></p>
+
+<p>I got</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>; &lt;&lt;&gt;&gt; DiG 9.10.3-P4-Ubuntu &lt;&lt;&gt;&gt; d0k1.github.io +nostats +nocomments +nocmd
+</span><span class='line'>;; global options: +cmd
+</span><span class='line'>;d0k1.github.io.            IN    A
+</span><span class='line'>d0k1.github.io.        3599    IN    CNAME    github.map.fastly.net.
+</span><span class='line'>github.map.fastly.net.    29    IN    A    151.101.12.133</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now I know IP of server that process request to my repository (d0k1.github.io) -  151.101.12.133
+And now I have to add to DNS
+<code>@    A    151.101.36.133</code></p>
+
+<p>So, that&rsquo;s how I get my blog on focus-it.ru up and running on free hosting with a great &ldquo;CMS&rdquo;</p>
+
+<p>Cheers,</p>
+
+<p>Denis</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
     <a href="/blog/archives">Blog Archives</a>
@@ -77,6 +260,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/12/04/nice-to-meet-you/">Nice to Meet You!</a>
+      </li>
     
   </ul>
 </section>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[FocusIt - Make IT happends]]></title>
-  <link href="http://d0k1.github.io/focusit/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Blog | FocusIt - Make IT happends]]></title>
+  <link href="http://d0k1.github.io/focusit/blog/categories/blog/atom.xml" rel="self"/>
   <link href="http://d0k1.github.io/focusit/"/>
   <updated>2016-12-04T18:06:59+05:00</updated>
   <id>http://d0k1.github.io/focusit/</id>
@@ -51,17 +51,13 @@ I read about Octopress somewhere, google it, and thought that it is woth trying.
 
 <p><code>rake install</code></p>
 
-<p><strong>Ubuntu 16.04</strong> I don&rsquo;t know why at the moment, but if you run <code>rake SOMETHING</code> you&rsquo;ll get wierd error, that tells nothing.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>bundler: failed to load command: rake (/usr/local/bin/rake)
-</span><span class='line'>LoadError: cannot load such file -- /usr/share/rubygems-integration/all/specifications/bin/rake
-</span><span class='line'>  /usr/local/bin/rake:23:in `load'
-</span><span class='line'>  /usr/local/bin/rake:23:in `&lt;top (required)&gt;'</span></code></pre></td></tr></table></div></figure>
-
+<p><strong>Ubuntu 16.04</strong> I don&rsquo;t know why at the moment, but if you run <code>rake SOMETHING</code> you&rsquo;ll get wierd error, that tells nothing.
+<code>
+bundler: failed to load command: rake (/usr/local/bin/rake)
+LoadError: cannot load such file -- /usr/share/rubygems-integration/all/specifications/bin/rake
+  /usr/local/bin/rake:23:in `load'
+  /usr/local/bin/rake:23:in `&lt;top (required)&gt;'
+</code></p>
 
 <p>The quick solution is to use <code>/usr/bin/rake</code> instead of <code>rake</code></p>
 
@@ -128,19 +124,14 @@ document_root = "~/d0k1.github.io/focusit"
 <p>You can add custom domain to you github pages based blog. To make it you need to create two file inside <code>source</code> catalog: <code>CNAME</code>, <code>.nojekyll</code>
 File <code>CNAME</code> should contain you custom domain, for example <code>focus-it.ru</code></p>
 
-<p>After it you can ypddate you repository</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake generate
-</span><span class='line'>git add .
-</span><span class='line'>git add -am 'domain configuration'
-</span><span class='line'>git push origin source
-</span><span class='line'>rake deploy</span></code></pre></td></tr></table></div></figure>
-
+<p>After it you can ypddate you repository
+<code>
+rake generate
+git add .
+git add -am 'domain configuration'
+git push origin source
+rake deploy
+</code></p>
 
 <p>Do not forget to update your DNS to forward requests from you custom domain to github&rsquo;s servers.
 You need know what ip servers you repostiry</p>
@@ -148,19 +139,14 @@ You need know what ip servers you repostiry</p>
 <p>After I ran
 <code>dig d0k1.github.io +nostats +nocomments +nocmd</code></p>
 
-<p>I got</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>; &lt;&lt;&gt;&gt; DiG 9.10.3-P4-Ubuntu &lt;&lt;&gt;&gt; d0k1.github.io +nostats +nocomments +nocmd
-</span><span class='line'>;; global options: +cmd
-</span><span class='line'>;d0k1.github.io.            IN    A
-</span><span class='line'>d0k1.github.io.        3599    IN    CNAME    github.map.fastly.net.
-</span><span class='line'>github.map.fastly.net.    29    IN    A    151.101.12.133</span></code></pre></td></tr></table></div></figure>
-
+<p>I got
+<code>
+; &lt;&lt;&gt;&gt; DiG 9.10.3-P4-Ubuntu &lt;&lt;&gt;&gt; d0k1.github.io +nostats +nocomments +nocmd
+;; global options: +cmd
+;d0k1.github.io.            IN    A
+d0k1.github.io.        3599    IN    CNAME    github.map.fastly.net.
+github.map.fastly.net.    29    IN    A    151.101.12.133
+</code></p>
 
 <p>Now I know IP of server that process request to my repository (d0k1.github.io) -  151.101.12.133
 And now I have to add to DNS
