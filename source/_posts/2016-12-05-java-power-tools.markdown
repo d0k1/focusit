@@ -6,9 +6,6 @@ comments: true
 categories: [java, tools, diagnostics]
 ---
 
-#JDK Power Tools
-
-##Intro
 Hi there!
 In this short post serie I'm going to tell you a bit about some use cases of "invisible" tools that JDK comes with. 
 I had wondered of fact that many developers don't know anything about invisible power of these jdk tools.
