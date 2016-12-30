@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Java | FocusIt - Make IT happends]]></title>
+  <link href="http://d0k1.github.io/focusit/blog/categories/java/atom.xml" rel="self"/>
+  <link href="http://d0k1.github.io/focusit/"/>
+  <updated>2016-12-31T00:51:53+05:00</updated>
+  <id>http://d0k1.github.io/focusit/</id>
+  <author>
+    <name><![CDATA[Denis Kirpichenkov]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Java Power Tools]]></title>
+    <link href="http://d0k1.github.io/focusit/blog/2016/12/05/java-power-tools/"/>
+    <updated>2016-12-05T23:34:07+05:00</updated>
+    <id>http://d0k1.github.io/focusit/blog/2016/12/05/java-power-tools</id>
+    <content type="html"><![CDATA[<h1>JDK Power Tools</h1>
+
+<h2>Intro</h2>
+
+<p>Hi there!
+In this short post serie I&rsquo;m going to tell you a bit about some use cases of &ldquo;invisible&rdquo; tools that JDK comes with.
+I had wondered of fact that many developers don&rsquo;t know anything about invisible power of these jdk tools.
+All of these tools aimed to help understanding what is going on in running jvm.</p>
+
+<p>List of invisible tools:</p>
+
+<ul>
+<li>jps</li>
+<li>jcmd</li>
+<li>jstat</li>
+<li>jstack</li>
+<li>jmap</li>
+<li>jhat</li>
+</ul>
+
+
+<p>I will write about one tool at a time.</p>
+
+<p>Next post dedicated to jps.</p>
+]]></content>
+  </entry>
+  
+</feed>
