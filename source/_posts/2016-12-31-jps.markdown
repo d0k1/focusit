@@ -1,0 +1,42 @@
+---
+layout: post
+title: "JPS"
+date: 2016-12-31 01:11:15 +0500
+comments: true
+categories: [java, tools, diagnostics]
+description: Some words about one jdk tool that shows java process status. Jps tool description
+
+---
+This small tool can be useful when someone wants to view PIDs of running JVMs on the host.
+
+#List of JVM instances
+
+Just type ``jps`` and you'll see running JVMs instances.
+
+```
+$ jps
+17910 Jps
+17884 org.eclipse.equinox.launcher_1.3.100.v20150511-1540.jar
+```
+
+But jps can do more.
+
+<!-- more -->
+
+#List of JVM arguments
+
+``jps -v`` will show command line arguments used to start a specific JVM instance
+```
+jps -v               
+18313 Jps -Dapplication.home=/usr/lib/jvm/java-8-oracle -Xms8m
+```
+
+#Main class used to launch JVM
+``jps -l`` will tell you what class was used as main to start a java application
+
+```
+$ jps -l
+19143 sun.tools.jps.Jps
+```
+
+Next post will describe jcmd. Tool that can control running jvm instance.
