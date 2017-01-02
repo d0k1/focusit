@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Tools | FocusIt - Make IT happends]]></title>
+  <title><![CDATA[Category: Tools | FocusIt - Make IT happens]]></title>
   <link href="http://d0k1.github.io/focusit/blog/categories/tools/atom.xml" rel="self"/>
   <link href="http://d0k1.github.io/focusit/"/>
-  <updated>2016-12-31T00:54:45+05:00</updated>
+  <updated>2017-01-02T23:08:01+05:00</updated>
   <id>http://d0k1.github.io/focusit/</id>
   <author>
     <name><![CDATA[Denis Kirpichenkov]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[JPS]]></title>
+    <link href="http://d0k1.github.io/focusit/blog/2016/12/31/jps/"/>
+    <updated>2016-12-31T01:11:15+05:00</updated>
+    <id>http://d0k1.github.io/focusit/blog/2016/12/31/jps</id>
+    <content type="html"><![CDATA[<p>This small tool can be useful when someone wants to view PIDs of running JVMs on the host.</p>
+
+<h1>List of JVM instances</h1>
+
+<p>Just type <code>jps</code> and you&rsquo;ll see running JVMs instances.</p>
+
+<pre><code>$ jps
+17910 Jps
+17884 org.eclipse.equinox.launcher_1.3.100.v20150511-1540.jar
+</code></pre>
+
+<p>But jps can do more.</p>
+
+<!-- more -->
+
+
+<h1>List of JVM arguments</h1>
+
+<p><code>jps -v</code> will show command line arguments used to start a specific JVM instance
+<code>
+jps -v               
+18313 Jps -Dapplication.home=/usr/lib/jvm/java-8-oracle -Xms8m
+</code></p>
+
+<h1>Main class used to launch JVM</h1>
+
+<p><code>jps -l</code> will tell you what class was used as main to start a java application</p>
+
+<pre><code>$ jps -l
+19143 sun.tools.jps.Jps
+</code></pre>
+
+<p>Next post will describe jcmd. Tool that can control running jvm instance.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Java Power Tools]]></title>
