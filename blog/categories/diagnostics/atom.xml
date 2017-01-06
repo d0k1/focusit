@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Diagnostics | FocusIt - Make IT happens]]></title>
   <link href="http://d0k1.github.io/focusit/blog/categories/diagnostics/atom.xml" rel="self"/>
   <link href="http://d0k1.github.io/focusit/"/>
-  <updated>2017-01-06T15:16:17+05:00</updated>
+  <updated>2017-01-06T15:18:14+05:00</updated>
   <id>http://d0k1.github.io/focusit/</id>
   <author>
     <name><![CDATA[Denis Kirpichenkov]]></name>
@@ -73,11 +73,11 @@ jcmd PID help
 <p>jcmd can help with memory issues by using these commands</p>
 
 <ul>
-<li>GC.class_stats - print statistics about loaded classes: how many methods, annotations, bytecode, etc every loaded class has</li>
-<li>GC.class_histogram - print histogram that shows how many objects are live in heap of every loaded class</li>
-<li>GC.heap_dump - make a heap dump</li>
-<li>GC.run_finalization - run finalization phase of GC</li>
-<li>GC.run - run FullGC</li>
+<li>GC.class_stats - prints statistics about loaded classes: how many methods, annotations, bytecode, etc every loaded class has</li>
+<li>GC.class_histogram - prints histogram that shows how many objects are live in heap of every loaded class</li>
+<li>GC.heap_dump - makes a heap dump</li>
+<li>GC.run_finalization - runs finalization phase of GC</li>
+<li>GC.run - runs FullGC</li>
 </ul>
 
 
