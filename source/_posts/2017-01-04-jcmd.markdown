@@ -1,0 +1,72 @@
+---
+layout: post
+title: "jcmd"
+date: 2017-01-04 01:32:27 +0500
+comments: true
+categories: [java, tools, diagnostics]
+description: jcmd a JVM command center. jcmd manual
+---
+
+Sometimes, as you probably know, there could be a situation when you would want to send some commands to a running JVM instance to get an idea what's heppening in the VM. 
+For example you might want to send a command to make a heap dump, print class histogram or something else.
+This is the case for jcmd utility. It can send a lot of diagnostic commands to a JVM throught a special diagnostic channel. 
+And the only condition for it to be possible is that JVM should be running normally, it must not be freezed.
+For example when JVM makes a heap dump it can't accept any diagnostic commands.
+
+<!-- more -->
+So, using jcmd is as simply as
+
+```
+    jcmd PID <command>
+```
+
+jcmd can print a list of supported commands.
+```
+jcmd PID help
+```
+
+This post will cover commands:
+
+* JFR.stop
+* JFR.start
+* JFR.dump
+* GC.class_stats
+* GC.class_histogram
+* GC.heap_dump
+* GC.run_finalization
+* GC.run
+* VM.native_memory
+* VM.uptime
+* VM.flags
+* VM.system_properties
+* VM.command_line
+* VM.version
+
+#Java Flight Recorder commands
+
+There some commands that can control jfr recording.
+
+* JFR.stop - stops current recording
+* JFR.start - starts a recording
+* JFR.dump - save current recording to a file
+
+#GC commands
+
+jcmd can help with memory issues by using these commands
+
+* GC.class_stats - print statistics about loaded classes: how many methods, annotations, bytecode, etc every loaded class has
+* GC.class_histogram - print histogram that shows how many objects are live in heap of every loaded class
+* GC.heap_dump - make a heap dump
+* GC.run_finalization - run finalization phase of GC
+* GC.run - run FullGC
+
+#VM commands
+
+Finally, there are some informational commands jcmd can send. 
+
+* VM.native_memory - shows infomation about native memory usage
+* VM.uptime - shows JVM uptime
+* VM.flags - shows flags that were used to launch JVM 
+* VM.system_properties - shows all system properties that are accessable within JVM
+* VM.command_line - shows full command line that was used to launch JVM
+* VM.version - shows JVM's version
