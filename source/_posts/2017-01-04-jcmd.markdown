@@ -54,11 +54,11 @@ There some commands that can control jfr recording.
 
 jcmd can help with memory issues by using these commands
 
-* GC.class_stats - print statistics about loaded classes: how many methods, annotations, bytecode, etc every loaded class has
-* GC.class_histogram - print histogram that shows how many objects are live in heap of every loaded class
-* GC.heap_dump - make a heap dump
-* GC.run_finalization - run finalization phase of GC
-* GC.run - run FullGC
+* GC.class_stats - prints statistics about loaded classes: how many methods, annotations, bytecode, etc every loaded class has
+* GC.class_histogram - prints histogram that shows how many objects are live in heap of every loaded class
+* GC.heap_dump - makes a heap dump
+* GC.run_finalization - runs finalization phase of GC
+* GC.run - runs FullGC
 
 #VM commands
 
