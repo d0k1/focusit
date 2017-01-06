@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | FocusIt - Make IT happens]]></title>
   <link href="http://d0k1.github.io/focusit/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://d0k1.github.io/focusit/"/>
-  <updated>2017-01-02T23:08:01+05:00</updated>
+  <updated>2017-01-06T15:16:17+05:00</updated>
   <id>http://d0k1.github.io/focusit/</id>
   <author>
     <name><![CDATA[Denis Kirpichenkov]]></name>
@@ -12,6 +12,90 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Jcmd]]></title>
+    <link href="http://d0k1.github.io/focusit/blog/2017/01/04/jcmd/"/>
+    <updated>2017-01-04T01:32:27+05:00</updated>
+    <id>http://d0k1.github.io/focusit/blog/2017/01/04/jcmd</id>
+    <content type="html"><![CDATA[<p>Sometimes, as you probably know, there could be a situation when you would want to send some commands to a running JVM instance to get an idea what&rsquo;s heppening in the VM.
+For example you might want to send a command to make a heap dump, print class histogram or something else.
+This is the case for jcmd utility. It can send a lot of diagnostic commands to a JVM throught a special diagnostic channel.
+And the only condition for it to be possible is that JVM should be running normally, it must not be freezed.
+For example when JVM makes a heap dump it can&rsquo;t accept any diagnostic commands.</p>
+
+<!-- more -->
+
+
+<p>So, using jcmd is as simply as</p>
+
+<pre><code>    jcmd PID &lt;command&gt;
+</code></pre>
+
+<p>jcmd can print a list of supported commands.
+<code>
+jcmd PID help
+</code></p>
+
+<p>This post will cover commands:</p>
+
+<ul>
+<li>JFR.stop</li>
+<li>JFR.start</li>
+<li>JFR.dump</li>
+<li>GC.class_stats</li>
+<li>GC.class_histogram</li>
+<li>GC.heap_dump</li>
+<li>GC.run_finalization</li>
+<li>GC.run</li>
+<li>VM.native_memory</li>
+<li>VM.uptime</li>
+<li>VM.flags</li>
+<li>VM.system_properties</li>
+<li>VM.command_line</li>
+<li>VM.version</li>
+</ul>
+
+
+<h1>Java Flight Recorder commands</h1>
+
+<p>There some commands that can control jfr recording.</p>
+
+<ul>
+<li>JFR.stop - stops current recording</li>
+<li>JFR.start - starts a recording</li>
+<li>JFR.dump - save current recording to a file</li>
+</ul>
+
+
+<h1>GC commands</h1>
+
+<p>jcmd can help with memory issues by using these commands</p>
+
+<ul>
+<li>GC.class_stats - print statistics about loaded classes: how many methods, annotations, bytecode, etc every loaded class has</li>
+<li>GC.class_histogram - print histogram that shows how many objects are live in heap of every loaded class</li>
+<li>GC.heap_dump - make a heap dump</li>
+<li>GC.run_finalization - run finalization phase of GC</li>
+<li>GC.run - run FullGC</li>
+</ul>
+
+
+<h1>VM commands</h1>
+
+<p>Finally, there are some informational commands jcmd can send.</p>
+
+<ul>
+<li>VM.native_memory - shows infomation about native memory usage</li>
+<li>VM.uptime - shows JVM uptime</li>
+<li>VM.flags - shows flags that were used to launch JVM</li>
+<li>VM.system_properties - shows all system properties that are accessable within JVM</li>
+<li>VM.command_line - shows full command line that was used to launch JVM</li>
+<li>VM.version - shows JVM&rsquo;s version</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[JPS]]></title>

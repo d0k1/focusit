@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Tools - FocusIt - Make IT happens</title>
+  <title>Jcmd - FocusIt - Make IT happens</title>
   <meta name="author" content="Denis Kirpichenkov">
 
   
-  <meta name="description" content="Category: tools">
+  <meta name="description" content="jcmd a JVM command center. jcmd manual">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://d0k1.github.io/focusit/blog/categories/tools/">
+  <link rel="canonical" href="http://d0k1.github.io/focusit/blog/2017/01/04/jcmd/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="FocusIt - Make IT happens" type="application/atom+xml">
@@ -64,66 +64,147 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Tools</h1>
+    
+      <h1 class="entry-title">Jcmd</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2017-01-04T01:32:27+05:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>1:32 am</span></time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>Sometimes, as you probably know, there could be a situation when you would want to send some commands to a running JVM instance to get an idea what&rsquo;s heppening in the VM.
+For example you might want to send a command to make a heap dump, print class histogram or something else.
+This is the case for jcmd utility. It can send a lot of diagnostic commands to a JVM throught a special diagnostic channel.
+And the only condition for it to be possible is that JVM should be running normally, it must not be freezed.
+For example when JVM makes a heap dump it can&rsquo;t accept any diagnostic commands.</p>
 
-  
-  <h2>2017</h2>
-
-<article>
-  
-<h1><a href="/blog/2017/01/04/jcmd/">Jcmd</a></h1>
-<time datetime="2017-01-04T01:32:27+05:00" pubdate><span class='month'>Jan</span> <span class='day'>04</span> <span class='year'>2017</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/diagnostics/'>diagnostics</a>, <a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/tools/'>tools</a></span>
-</footer>
+<!-- more -->
 
 
-</article>
+<p>So, using jcmd is as simply as</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>jcmd PID &lt;command&gt;</span></code></pre></td></tr></table></div></figure>
 
 
+<p>jcmd can print a list of supported commands.</p>
 
-  
-  <h2>2016</h2>
-
-<article>
-  
-<h1><a href="/blog/2016/12/31/jps/">JPS</a></h1>
-<time datetime="2016-12-31T01:11:15+05:00" pubdate><span class='month'>Dec</span> <span class='day'>31</span> <span class='year'>2016</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/diagnostics/'>diagnostics</a>, <a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/tools/'>tools</a></span>
-</footer>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>jcmd PID help</span></code></pre></td></tr></table></div></figure>
 
 
-</article>
+<p>This post will cover commands:</p>
+
+<ul>
+<li>JFR.stop</li>
+<li>JFR.start</li>
+<li>JFR.dump</li>
+<li>GC.class_stats</li>
+<li>GC.class_histogram</li>
+<li>GC.heap_dump</li>
+<li>GC.run_finalization</li>
+<li>GC.run</li>
+<li>VM.native_memory</li>
+<li>VM.uptime</li>
+<li>VM.flags</li>
+<li>VM.system_properties</li>
+<li>VM.command_line</li>
+<li>VM.version</li>
+</ul>
 
 
+<h1>Java Flight Recorder commands</h1>
 
-<article>
-  
-<h1><a href="/blog/2016/12/05/java-power-tools/">Java Power Tools</a></h1>
-<time datetime="2016-12-05T23:34:07+05:00" pubdate><span class='month'>Dec</span> <span class='day'>05</span> <span class='year'>2016</span></time>
+<p>There some commands that can control jfr recording.</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/diagnostics/'>diagnostics</a>, <a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/tools/'>tools</a></span>
-</footer>
+<ul>
+<li>JFR.stop - stops current recording</li>
+<li>JFR.start - starts a recording</li>
+<li>JFR.dump - save current recording to a file</li>
+</ul>
 
 
-</article>
+<h1>GC commands</h1>
+
+<p>jcmd can help with memory issues by using these commands</p>
+
+<ul>
+<li>GC.class_stats - print statistics about loaded classes: how many methods, annotations, bytecode, etc every loaded class has</li>
+<li>GC.class_histogram - print histogram that shows how many objects are live in heap of every loaded class</li>
+<li>GC.heap_dump - make a heap dump</li>
+<li>GC.run_finalization - run finalization phase of GC</li>
+<li>GC.run - run FullGC</li>
+</ul>
+
+
+<h1>VM commands</h1>
+
+<p>Finally, there are some informational commands jcmd can send.</p>
+
+<ul>
+<li>VM.native_memory - shows infomation about native memory usage</li>
+<li>VM.uptime - shows JVM uptime</li>
+<li>VM.flags - shows flags that were used to launch JVM</li>
+<li>VM.system_properties - shows all system properties that are accessable within JVM</li>
+<li>VM.command_line - shows full command line that was used to launch JVM</li>
+<li>VM.version - shows JVM&rsquo;s version</li>
+</ul>
 
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Denis Kirpichenkov</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2017-01-04T01:32:27+05:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>1:32 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/diagnostics/'>diagnostics</a>, <a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/tools/'>tools</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://d0k1.github.io/focusit/blog/2017/01/04/jcmd/" data-via="" data-counturl="http://d0k1.github.io/focusit/blog/2017/01/04/jcmd/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2016/12/31/jps/" title="Previous Post: JPS">&laquo; JPS</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>
