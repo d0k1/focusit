@@ -1,0 +1,45 @@
+---
+layout: post
+title: "jstat"
+date: 2017-01-06 15:25:53 +0500
+comments: true
+categories: [java, tools, diagnostics]
+description: jstat is a tool to get information from running JVM
+---
+
+Sometime ago I've realized that JVM has two major things, that affects JVM performance the most. 
+It is Jist-In-Time compilation and, of course, Garbage Collection.
+I believe that ``jstat`` is a great tool that show what's JIT/GC doing right now, and some statistics about JIT/GC activity.
+
+<!-- more -->
+Let's go to the bussiness.
+
+To start jstat run 
+
+``
+jstat operation option PID interval count 
+``
+
+* operation is a jstat's 'mode'. It can monitor compiler, gc, classes. To get full list of supported operations run ``jstat -options``
+* option can beutify in some sense jstat output. ``jstat -t`` will print timestamp for every line. Timestamp is a time in seconds elapsed from JVM's start. ``jstat -h 3`` will print header every 3 lines of jstat's output.
+* PID is a JVM's process id. Actually, as PID you can provide a vmid that is running on remote server. Example ``jstat -gccause 123@remote-server.rsi``
+* interval is a time between jstat measurements. It can be in ms or s. Example ``jstat -compiler 4795 1s``
+* count is a number of jstat measurements
+
+As for me I prefer to use -gccause -compiler modes when using jstat.
+
+```
+$ jstat -compiler -t -h 3 4795 1s                                                                                                                                             130 ↵
+Timestamp       Compiled Failed Invalid   Time   FailedType FailedMethod
+        33819.6     1270      1       0     4.61          1 sun/misc/URLClassPath$JarLoader getResource
+        33820.6     1270      1       0     4.61          1 sun/misc/URLClassPath$JarLoader getResource
+        33821.6     1270      1       0     4.61          1 sun/misc/URLClassPath$JarLoader getResource
+
+$ jstat -gccause -t -h 3 4795 1s                                                                                                                                              130 ↵
+Timestamp         S0     S1     E      O      M     CCS    YGC     YGCT    FGC    FGCT     GCT    LGCC                 GCC                 
+        33984.8  78.01   0.00  11.38   0.10  97.16  95.01      2    0.099     0    0.000    0.099 Allocation Failure   No GC               
+        33985.9  78.01   0.00  11.38   0.10  97.16  95.01      2    0.099     0    0.000    0.099 Allocation Failure   No GC               
+        33986.9  78.01   0.00  11.38   0.10  97.16  95.01      2    0.099     0    0.000    0.099 Allocation Failure   No GC               
+
+```
+
