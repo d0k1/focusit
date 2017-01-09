@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | FocusIt - Make IT happens]]></title>
   <link href="http://d0k1.github.io/focusit/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://d0k1.github.io/focusit/"/>
-  <updated>2017-01-06T15:18:14+05:00</updated>
+  <updated>2017-01-10T00:46:03+05:00</updated>
   <id>http://d0k1.github.io/focusit/</id>
   <author>
     <name><![CDATA[Denis Kirpichenkov]]></name>
@@ -12,6 +12,52 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Jstat]]></title>
+    <link href="http://d0k1.github.io/focusit/blog/2017/01/06/jstat/"/>
+    <updated>2017-01-06T15:25:53+05:00</updated>
+    <id>http://d0k1.github.io/focusit/blog/2017/01/06/jstat</id>
+    <content type="html"><![CDATA[<p>Sometime ago I&rsquo;ve realized that JVM has two major things, that affects JVM performance the most.
+It is Jist-In-Time compilation and, of course, Garbage Collection.
+I believe that <code>jstat</code> is a great tool that show what&rsquo;s JIT/GC doing right now, and some statistics about JIT/GC activity.</p>
+
+<!-- more -->
+
+
+<p>Let&rsquo;s go to the bussiness.</p>
+
+<p>To start jstat run</p>
+
+<p><code>
+jstat operation option PID interval count
+</code></p>
+
+<ul>
+<li>operation is a jstat&rsquo;s &lsquo;mode&rsquo;. It can monitor compiler, gc, classes. To get full list of supported operations run <code>jstat -options</code></li>
+<li>option can beutify in some sense jstat output. <code>jstat -t</code> will print timestamp for every line. Timestamp is a time in seconds elapsed from JVM&rsquo;s start. <code>jstat -h 3</code> will print header every 3 lines of jstat&rsquo;s output.</li>
+<li>PID is a JVM&rsquo;s process id. Actually, as PID you can provide a vmid that is running on remote server. Example <code>jstat -gccause 123@remote-server.rsi</code></li>
+<li>interval is a time between jstat measurements. It can be in ms or s. Example <code>jstat -compiler 4795 1s</code></li>
+<li>count is a number of jstat measurements</li>
+</ul>
+
+
+<p>As for me I prefer to use -gccause -compiler modes when using jstat.</p>
+
+<pre><code>$ jstat -compiler -t -h 3 4795 1s                                                                                                                                             130 ↵
+Timestamp       Compiled Failed Invalid   Time   FailedType FailedMethod
+        33819.6     1270      1       0     4.61          1 sun/misc/URLClassPath$JarLoader getResource
+        33820.6     1270      1       0     4.61          1 sun/misc/URLClassPath$JarLoader getResource
+        33821.6     1270      1       0     4.61          1 sun/misc/URLClassPath$JarLoader getResource
+
+$ jstat -gccause -t -h 3 4795 1s                                                                                                                                              130 ↵
+Timestamp         S0     S1     E      O      M     CCS    YGC     YGCT    FGC    FGCT     GCT    LGCC                 GCC                 
+        33984.8  78.01   0.00  11.38   0.10  97.16  95.01      2    0.099     0    0.000    0.099 Allocation Failure   No GC               
+        33985.9  78.01   0.00  11.38   0.10  97.16  95.01      2    0.099     0    0.000    0.099 Allocation Failure   No GC               
+        33986.9  78.01   0.00  11.38   0.10  97.16  95.01      2    0.099     0    0.000    0.099 Allocation Failure   No GC               
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Jcmd]]></title>

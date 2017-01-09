@@ -5,13 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Java Power Tools - FocusIt - Make IT happens</title>
+  <title>Jstat - FocusIt - Make IT happens</title>
   <meta name="author" content="Denis Kirpichenkov">
 
   
-  <meta name="description" content="Hi there!
-In this short post serie I&rsquo;m going to tell you a bit about some use cases of &ldquo;invisible&rdquo; tools that JDK comes with.
-I had &hellip;">
+  <meta name="description" content="jstat is a tool to get information from running JVM">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +18,7 @@ I had &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://d0k1.github.io/focusit/blog/2016/12/05/java-power-tools/">
+  <link rel="canonical" href="http://d0k1.github.io/focusit/blog/2017/01/06/jstat/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="FocusIt - Make IT happens" type="application/atom+xml">
@@ -70,7 +68,7 @@ I had &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Java Power Tools</h1>
+      <h1 class="entry-title">Jstat</h1>
     
     
       <p class="meta">
@@ -79,33 +77,65 @@ I had &hellip;">
 
 
 
-<time class='entry-date' datetime='2016-12-05T23:34:07+05:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>11:34 pm</span></time>
+<time class='entry-date' datetime='2017-01-06T15:25:53+05:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>3:25 pm</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>Hi there!
-In this short post serie I&rsquo;m going to tell you a bit about some use cases of &ldquo;invisible&rdquo; tools that JDK comes with.
-I had wondered of fact that many developers don&rsquo;t know anything about invisible power of these jdk tools.
-All of these tools aimed to help understanding what is going on in running jvm.</p>
+<div class="entry-content"><p>Sometime ago I&rsquo;ve realized that JVM has two major things, that affects JVM performance the most.
+It is Jist-In-Time compilation and, of course, Garbage Collection.
+I believe that <code>jstat</code> is a great tool that show what&rsquo;s JIT/GC doing right now, and some statistics about JIT/GC activity.</p>
 
-<p>List of invisible tools:</p>
+<!-- more -->
+
+
+<p>Let&rsquo;s go to the bussiness.</p>
+
+<p>To start jstat run</p>
+
+<p><code>
+jstat operation option PID interval count
+</code></p>
 
 <ul>
-<li>jps</li>
-<li>jcmd</li>
-<li>jstat</li>
-<li>jstack</li>
-<li>jmap</li>
-<li>jhat</li>
+<li>operation is a jstat&rsquo;s &lsquo;mode&rsquo;. It can monitor compiler, gc, classes. To get full list of supported operations run <code>jstat -options</code></li>
+<li>option can beutify in some sense jstat output. <code>jstat -t</code> will print timestamp for every line. Timestamp is a time in seconds elapsed from JVM&rsquo;s start. <code>jstat -h 3</code> will print header every 3 lines of jstat&rsquo;s output.</li>
+<li>PID is a JVM&rsquo;s process id. Actually, as PID you can provide a vmid that is running on remote server. Example <code>jstat -gccause 123@remote-server.rsi</code></li>
+<li>interval is a time between jstat measurements. It can be in ms or s. Example <code>jstat -compiler 4795 1s</code></li>
+<li>count is a number of jstat measurements</li>
 </ul>
 
 
-<p>I will write about one tool at a time.</p>
+<p>As for me I prefer to use -gccause -compiler modes when using jstat.</p>
 
-<p>Next post dedicated to jps.</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ jstat -compiler -t -h 3 4795 1s                                                                                                                                             130 ↵
+</span><span class='line'>Timestamp       Compiled Failed Invalid   Time   FailedType FailedMethod
+</span><span class='line'>        33819.6     1270      1       0     4.61          1 sun/misc/URLClassPath$JarLoader getResource
+</span><span class='line'>        33820.6     1270      1       0     4.61          1 sun/misc/URLClassPath$JarLoader getResource
+</span><span class='line'>        33821.6     1270      1       0     4.61          1 sun/misc/URLClassPath$JarLoader getResource
+</span><span class='line'>
+</span><span class='line'>$ jstat -gccause -t -h 3 4795 1s                                                                                                                                              130 ↵
+</span><span class='line'>Timestamp         S0     S1     E      O      M     CCS    YGC     YGCT    FGC    FGCT     GCT    LGCC                 GCC                 
+</span><span class='line'>        33984.8  78.01   0.00  11.38   0.10  97.16  95.01      2    0.099     0    0.000    0.099 Allocation Failure   No GC               
+</span><span class='line'>        33985.9  78.01   0.00  11.38   0.10  97.16  95.01      2    0.099     0    0.000    0.099 Allocation Failure   No GC               
+</span><span class='line'>        33986.9  78.01   0.00  11.38   0.10  97.16  95.01      2    0.099     0    0.000    0.099 Allocation Failure   No GC               
+</span></code></pre></td></tr></table></div></figure>
+
+
+
 </div>
 
 
@@ -121,7 +151,7 @@ All of these tools aimed to help understanding what is going on in running jvm.<
 
 
 
-<time class='entry-date' datetime='2016-12-05T23:34:07+05:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>11:34 pm</span></time>
+<time class='entry-date' datetime='2017-01-06T15:25:53+05:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>3:25 pm</span></time>
       
 
 <span class="categories">
@@ -135,7 +165,7 @@ All of these tools aimed to help understanding what is going on in running jvm.<
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://d0k1.github.io/focusit/blog/2016/12/05/java-power-tools/" data-via="" data-counturl="http://d0k1.github.io/focusit/blog/2016/12/05/java-power-tools/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://d0k1.github.io/focusit/blog/2017/01/06/jstat/" data-via="" data-counturl="http://d0k1.github.io/focusit/blog/2017/01/06/jstat/" >Tweet</a>
   
   
   
@@ -144,10 +174,8 @@ All of these tools aimed to help understanding what is going on in running jvm.<
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2016/12/04/octopress-cheat-sheet/" title="Previous Post: Octopress cheat sheet">&laquo; Octopress cheat sheet</a>
+        <a class="basic-alignment left" href="/blog/2017/01/04/jcmd/" title="Previous Post: jcmd">&laquo; jcmd</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2016/12/31/jps/" title="Next Post: JPS">JPS &raquo;</a>
       
     </p>
   </footer>
